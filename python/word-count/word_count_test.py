@@ -57,8 +57,7 @@ class WordCountTests(unittest.TestCase):
         self.assertEqual(
             {'rah': 2, 'ah': 3, 'roma': 2, 'ma': 1, 'ga': 2, 'oh': 1, 'la': 2,
              'want': 1, 'your': 1, 'bad': 1, 'romance': 1},
-             word_count('rah rah ah ah ah\troma roma ma\tga ga oh la la\twant\
-             your bad romance')
+             word_count('rah rah ah ah ah\troma roma ma\tga ga oh la la\twant your bad romance')
         )
 
 if __name__ == '__main__':

@@ -1,8 +1,6 @@
-from collections import defaultdict
+from collections import Counter
 
 
 def word_count(string):
-    word_dict = defaultdict(int)
-    for word in string.split():
-        word_dict[word] += 1
-    return word_dict
+    return Counter(string.split())
+    
