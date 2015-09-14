@@ -1,0 +1,7 @@
+(load-file "bob_test.clj")
+(ns bob-test
+  (:require [clojure.test :refer :all]))
+(load-file "bob_test.clj")
+quit
+(load-file "~/exercism.io/clojure/bob/bob_test.clj")
+quit
