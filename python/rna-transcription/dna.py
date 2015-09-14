@@ -1,12 +1,6 @@
 def to_rna(dna):
     rna = ''
+    dna_to_rna = {'G': 'C', 'C': 'G', 'A': 'U', 'T': 'A'}
     for char in dna:
-        if char == 'G':
-            rna += 'C'
-        elif char == 'C':
-            rna += 'G'
-        elif char == 'T':
-            rna += 'A'
-        elif char == 'A':
-            rna += 'U'
+        rna += str(dna_to_rna.get(char))
     return rna
