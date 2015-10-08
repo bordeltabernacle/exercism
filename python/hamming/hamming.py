@@ -1,4 +1,7 @@
 def distance(strandA, strandB):
+    """
+    Calculates the Hamming difference between two DNA strands
+    """
     distance = 0
     if len(strandA) != len(strandB):
         return "Strands are of unequal length."
