@@ -1,11 +1,8 @@
 def distance(strandA, strandB):
     distance = 0
-    if len(strandA) == len(strandB):
-        i = 0
-        while i < len(strandA):
-            if strandA[i] != strandB[i]:
-                distance += 1
-            i += 1
+    if len(strandA) != len(strandB):
+        return "Strands are of unequal length."
+    for i in range(len(strandA)):
+        if strandA[i] != strandB[i]:
+            distance += 1
     return distance
-
-print distance('A', 'B')
