@@ -2,16 +2,11 @@ def hey(what, response=None):
     """
     Given statements, returns the answers of Bob, a lackadaisical teenager.
     """
-    response_dict = {"stating": "Whatever.",
-                     "shouting": "Whoa, chill out!",
-                     "question": "Sure.",
-                     "silence": "Fine. Be that way!"}
     if what.strip() == "":
-        response = response_dict["silence"]
+        return "Fine. Be that way!"
     elif what.isupper():
-        response = response_dict["shouting"]
+        return "Whoa, chill out!"
     elif what.strip().endswith("?"):
-        response = response_dict["question"]
+        return "Sure."
     else:
-        response = response_dict["stating"]
-    return response
+        return "Whatever."
