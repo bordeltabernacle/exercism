@@ -31,11 +31,17 @@ Have fun!
 
 ## Running tests
 
+**TODO: explain pending**
+
+Move in to bob directory
+
 ```bash
-$ elixir bob_test.exs
+$ mix test
 ```
 
-(Replace `bob_test.exs` with the name of the test file.)
+```bash
+$ mix test include --pending
+```
 
 ## Source
 
