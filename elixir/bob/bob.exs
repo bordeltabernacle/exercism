@@ -20,10 +20,10 @@ defmodule Teenager do
 
   def hey(input) do
     cond do
-      silence?(input)             -> "Fine. Be that way!"
-      question?(input)            -> "Sure."
+      silence?(input)                        -> "Fine. Be that way!"
+      question?(input)                       -> "Sure."
       shouting?(input) and has_alpha?(input) -> "Whoa, chill out!"
-      true                        -> "Whatever."
+      true                                   -> "Whatever."
     end
   end
 

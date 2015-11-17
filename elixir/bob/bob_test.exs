@@ -1,3 +1,12 @@
+if System.get_env("EXERCISM_TEST_EXAMPLES") do
+  Code.load_file("example.exs")
+else
+  Code.load_file("bob.exs")
+end
+
+ExUnit.start
+ExUnit.configure(exclude: :pending)
+
 defmodule TeenagerTest do
   use ExUnit.Case, async: true
 
@@ -67,7 +76,7 @@ defmodule TeenagerTest do
 
   @tag :pending
   test "shouting in Russian" do
-    # Hopefully this is Russian for "get out"
+    # Hopefully this is Russian for "GET OUT"
     assert Teenager.hey("УХОДИТЬ") == "Whoa, chill out!"
   end
 end
