@@ -9,21 +9,10 @@ defmodule Words do
   def count(sentence) do
     sentence
     |> String.downcase
-    |> remove_punctuation
+    |> String.replace(~r/[^\w\s-]+|_/u, " ")
     |> String.split
-    |> count(%{})
-  end
-
-  def count([], map) do
-    map
-  end
-
-  def count([head|tail], map) do
-    count(tail, Map.update(map, head, 1, &(&1 + 1)))
-  end
-
-  defp remove_punctuation(word) do
-    String.replace(word, ~r/[^\w\s-]+|_/u, " ")
+    |> Enum.reduce(%{}, fn(word, map) ->
+      Map.update(map, word, 1, &(&1 + 1)) end)
   end
 
 end
