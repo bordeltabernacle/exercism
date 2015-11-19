@@ -19,7 +19,7 @@ defmodule Words do
   end
 
   def count([head|tail], map) do
-    count(tail, Dict.update(map, head, 1, &(&1 + 1)))
+    count(tail, Map.update(map, head, 1, &(&1 + 1)))
   end
 
   defp remove_punctuation(word) do
