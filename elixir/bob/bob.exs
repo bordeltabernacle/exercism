@@ -16,7 +16,7 @@ defmodule Teenager do
   the lackadaisical teenager.
   """
 
-  @spec hey(char_list()) :: char_list()
+  @spec hey(String.t) :: String.t
 
   def hey(input) do
     cond do
