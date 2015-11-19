@@ -20,3 +20,5 @@
 /scala/
 /scheme/
 /swift/
+
+*.pyc
