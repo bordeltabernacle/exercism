@@ -1,7 +1,7 @@
 if System.get_env("EXERCISM_TEST_EXAMPLES") do
   Code.load_file("example.exs")
 else
-  Code.load_file("~/code/exercism.io/elixir/word-count/word_count.exs")
+  Code.load_file("word_count.exs")
 end
 
 ExUnit.start
