@@ -30,25 +30,19 @@ defmodule ListOps do
   invoking `func` on each corresponding item of the collection.
   """
   @spec map(list, (any -> any)) :: list
-  def map(l, func),                   do: map(l, func, [])
-
-  defp map([], _, result),            do: reverse(result)
-  defp map([head|tail], func, result) do
-    map(tail, func, [func.(head)|result])
-  end
+  def map([], func),          do: []
+  def map([head|tail], func), do: [func.(head)|map(tail, func)]
 
   @doc """
   Filters the collection, i.e. returns only those elements for
   which `func` returns a truthy value.
   """
   @spec filter(list, (any -> as_boolean(term))) :: list
-  def filter(l, func),                   do: filter(l, func, [])
-
-  defp filter([], _, result),            do: reverse(result)
-  defp filter([head|tail], func, result) do
+  def filter([], _func), do: []
+  def filter([head|tail], func) do
     case func.(head) do
-      true  -> filter(tail, func, [head|result])
-      false -> filter(tail, func, result)
+      true  -> [head|filter(tail, func)]
+      false -> filter(tail, func)
     end
   end
 
@@ -64,10 +58,8 @@ defmodule ListOps do
   """
   @type acc :: any
   @spec reduce(list, acc, ((any, acc) -> acc)) :: acc
-  def reduce([], acc, _),            do: acc
-  def reduce([head|tail], acc, func) do
-    reduce(tail, func.(head, acc), func)
-  end
+  def reduce([], acc, _),             do: acc
+  def reduce([head|tail], acc, func), do: reduce(tail, func.(head, acc), func)
 
   @doc """
   Inserts the second collection into the end of the first collection.
@@ -76,23 +68,15 @@ defmodule ListOps do
   collection followed by the elements from the second collection.
   """
   @spec append(list, list) :: list
-  def append(a, b),              do: append(a, b, reverse(a))
-
-  defp append(_, [], result),    do: reverse(result)
-  defp append(a, [head|tail], result) do
-    append(a, tail, [head|result])
-  end
+  def append([], b),          do: b
+  def append([head|tail], b), do: [head | append(tail, b)]
 
   @doc """
   Given an enumerable of enumerables, concatenates the enumerables
   into a single list.
   """
   @spec concat([[any]]) :: [any]
-  def concat(ll),             do: concat(reverse(ll), [])
-
-  defp concat([], result),    do: result
-  defp concat([head|tail], result) do
-    concat(tail, append(head, result))
-  end
+  def concat([]), do: []
+  def concat([head|tail]), do: append(head, concat(tail))
 
 end
