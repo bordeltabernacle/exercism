@@ -30,7 +30,7 @@ defmodule ListOps do
   invoking `func` on each corresponding item of the collection.
   """
   @spec map(list, (any -> any)) :: list
-  def map([], func),          do: []
+  def map([], _),          do: []
   def map([head|tail], func), do: [func.(head)|map(tail, func)]
 
   @doc """
@@ -76,7 +76,6 @@ defmodule ListOps do
   into a single list.
   """
   @spec concat([[any]]) :: [any]
-  def concat([]), do: []
-  def concat([head|tail]), do: append(head, concat(tail))
+  def concat(ll), do: ll |> reverse |> reduce([], &(append(&1, &2)))
 
 end
