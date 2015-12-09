@@ -24,7 +24,9 @@ defmodule Sublist do
   defp sublist?(_, [], _), do: :false
   defp sublist?(smaller, larger = [_|tb], len_smaller) do
     cond do
-      smaller === Enum.take(larger, len_smaller) ->
+      length(tb)+1 < len_smaller ->
+        :false
+      smaller === larger |> Enum.take(len_smaller) |> Enum.to_list ->
         :true
       true ->
         sublist?(smaller, tb, len_smaller)
