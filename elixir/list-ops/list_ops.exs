@@ -30,20 +30,17 @@ defmodule ListOps do
   invoking `func` on each corresponding item of the collection.
   """
   @spec map(list, (any -> any)) :: list
-  def map([], _),          do: []
-  def map([head|tail], func), do: [func.(head)|map(tail, func)]
+  def map(l, func) do
+    for n <- l, do: func.(n)
+  end
 
   @doc """
   Filters the collection, i.e. returns only those elements for
   which `func` returns a truthy value.
   """
   @spec filter(list, (any -> as_boolean(term))) :: list
-  def filter([], _func), do: []
-  def filter([head|tail], func) do
-    case func.(head) do
-      true  -> [head|filter(tail, func)]
-      false -> filter(tail, func)
-    end
+  def filter(l, func) do
+    for n <- l, func.(n), do: n
   end
 
   @doc """
