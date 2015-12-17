@@ -6,30 +6,30 @@ defmodule Sublist do
   whether it is equal or unequal to the second list.
   """
   @spec compare(list(), list()) :: :atom
-  def compare(a, b) do
-    {la, lb} = {length(a), length(b)}
+  def compare(list_a, list_b) do
+    {len_a, len_b} = {length(list_a), length(list_b)}
     cond do
-      a == b ->
+      list_a == list_b ->
         :equal
-      la < lb && sublist?(a, b, la) ->
+      len_a < len_b && sublist?(list_a, list_b, len_a) ->
         :sublist
-      la > lb && sublist?(b, a, lb) ->
+      list_a > len_b && sublist?(list_b, list_a, len_b) ->
         :superlist
-      a != b ->
+      list_a != list_b ->
         :unequal
     end
   end
 
   defp sublist?([], _, _), do: :true
   defp sublist?(_, [], _), do: :false
-  defp sublist?(smaller, larger = [_|tb], len_smaller) do
+  defp sublist?(smaller, larger = [_|tail_b], len_smaller) do
     cond do
-      length(tb)+1 < len_smaller ->
+      length(tail_b) + 1 < len_smaller ->
         :false
       smaller === larger |> Enum.take(len_smaller) |> Enum.to_list ->
         :true
       true ->
-        sublist?(smaller, tb, len_smaller)
+        sublist?(smaller, tail_b, len_smaller)
     end
   end
 
