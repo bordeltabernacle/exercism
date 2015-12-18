@@ -4,9 +4,9 @@ defmodule Anagram do
   """
   @spec match(String.t, [String.t]) :: [String.t]
   def match(base, candidates) do
-    Enum.filter(candidates,
-      &(sorted(String.downcase(&1)) == sorted(String.downcase(base))
-      && String.downcase(&1) != String.downcase(base)))
+    Enum.filter candidates,
+    &(sorted(String.downcase(&1)) == sorted(String.downcase(base))
+      && String.downcase(&1) != String.downcase(base))
   end
 
   defp sorted(str) do
