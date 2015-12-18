@@ -4,14 +4,18 @@ defmodule Anagram do
   """
   @spec match(String.t, [String.t]) :: [String.t]
   def match(base, candidates) do
-    Enum.filter candidates,
-    &(sorted(String.downcase(&1)) == sorted(String.downcase(base))
-      && String.downcase(&1) != String.downcase(base))
+    candidates
+    |> Enum.filter(&(sorted(&1) == sorted(base) && different?(&1, base)))
   end
 
   defp sorted(str) do
     str
+    |> String.downcase
     |> String.graphemes
     |> Enum.sort
+  end
+
+  defp different?(str_a, str_b) do
+    String.downcase(str_a) != String.downcase(str_b)
   end
 end
