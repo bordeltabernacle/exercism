@@ -6,15 +6,14 @@ defmodule Anagram do
   def match(base, candidates) do
     candidates
     |> Enum.filter(fn(candidate) ->
-      String.length(candidate) == String.length(base) end)
-    |> Enum.filter(fn(candidate) ->
-      Set.subset?(make_set(base), make_set(candidate)) end)
+      sorted(String.downcase(candidate)) == sorted(String.downcase(base))
+      && String.downcase(candidate) != String.downcase(base)
+    end)
   end
 
-  defp make_set(str) do
+  defp sorted(str) do
     str
-    |> String.downcase
-    |> String.split("")
-    |> Enum.into(MapSet.new)
+    |> String.graphemes
+    |> Enum.sort
   end
 end
