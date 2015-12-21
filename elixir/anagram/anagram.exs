@@ -11,7 +11,7 @@ defmodule Anagram do
   defp sorted(str) do
     str
     |> String.downcase
-    |> String.graphemes
+    |> String.to_char_list
     |> Enum.sort
   end
 
