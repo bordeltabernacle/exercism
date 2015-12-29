@@ -21,7 +21,7 @@ defmodule DNATest do
     assert DNA.nucleotide_counts('') == expected
   end
 
-  @tag :pending
+  # @tag :pending
   test "repetitive cytidine gets counted" do
     assert DNA.count('CCCCC', ?C) == 5
   end
@@ -32,7 +32,7 @@ defmodule DNATest do
     assert DNA.nucleotide_counts('GGGGGGGG') == expected
   end
 
-  @tag :pending
+  # @tag :pending
   test "counts only thymidine" do
     assert DNA.count('GGGGGTAACCCGG', ?T) == 1
   end
@@ -44,14 +44,14 @@ defmodule DNATest do
     assert DNA.nucleotide_counts(s) == expected
   end
 
-  @tag :pending
+  # @tag :pending
   test "count validates the nucleotide" do
     assert_raise ArgumentError, fn ->
       DNA.count('', ?U)
     end
   end
 
-  @tag :pending
+  # @tag :pending
   test "count validates the strand" do
     assert_raise ArgumentError, fn ->
       DNA.count('JOHNNYAPPLESEED', ?A)
