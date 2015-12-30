@@ -24,12 +24,14 @@ defmodule DNA do
     |> Enum.count(&(&1 == nucleotide))
   end
 
-  defp valid_nucleotide?(nucleotide), do
-    if nucleotide in @nucleotides, do: nucleotide, else: false
-  end
+  defp valid_nucleotide?(nucleotide) when nucleotide in @nucleotides, do: nucleotide
+  defp valid_nucleotide?(_), do: false
 
   defp valid_strand?(strand) do
-    if Enum.all?(strand, &(&1 in 'AGCT')), do: strand, else: false
+    cond do
+      Enum.all?(strand, &(&1 in 'AGCT')) == true -> strand
+      true                                       -> false
+    end
   end
 
   @doc """
@@ -42,5 +44,10 @@ defmodule DNA do
   """
   @spec nucleotide_counts([char]) :: Dict.t
   def nucleotide_counts(strand) do
+    %{?A => 0, ?T => 0, ?C => 0, ?G => 0}
+      |> Map.put(?A, count(strand, ?A))
+      |> Map.put(?T, count(strand, ?T))
+      |> Map.put(?C, count(strand, ?C))
+      |> Map.put(?G, count(strand, ?G))
   end
 end
