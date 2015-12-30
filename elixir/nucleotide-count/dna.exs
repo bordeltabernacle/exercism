@@ -14,11 +14,23 @@ defmodule DNA do
   """
   @spec count([char], char) :: non_neg_integer
   def count(strand, nucleotide) do
-    strand
-    |> Enum.filter(&(&1 == nucleotide))
-    |> Enum.count
+    do_count(valid_strand?(strand), valid_nucleotide?(nucleotide))
   end
 
+  defp do_count(false, _), do: raise ArgumentError
+  defp do_count(_, false), do: raise ArgumentError
+  defp do_count(strand, nucleotide) do
+    strand
+    |> Enum.count(&(&1 == nucleotide))
+  end
+
+  defp valid_nucleotide?(nucleotide), do
+    if nucleotide in @nucleotides, do: nucleotide, else: false
+  end
+
+  defp valid_strand?(strand) do
+    if Enum.all?(strand, &(&1 in 'AGCT')), do: strand, else: false
+  end
 
   @doc """
   Returns a summary of counts by nucleotide.
@@ -30,6 +42,5 @@ defmodule DNA do
   """
   @spec nucleotide_counts([char]) :: Dict.t
   def nucleotide_counts(strand) do
-
   end
 end
