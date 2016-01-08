@@ -13,46 +13,32 @@ defmodule ListOps do
   Returns the collection’s size.
   """
   @spec count(list) :: non_neg_integer
-  def count(list) do
-    list
-    |> reduce 0, fn(_, acc) -> acc + 1 end
-  end
+  def count([]), do: 0
+  def count([head|tail]), do: 1 + count(tail)
 
   @doc """
   Reverses the collection.
   """
   @spec reverse(list) :: list
-  def reverse(list) do
-    list
-    |> reduce [], fn(elem, acc) -> [elem|acc] end
-  end
+  def reverse(list), do: _reverse(list, [])
+
+  def _reverse([], acc), do: acc
+  def _reverse([head|tail], acc), do: _reverse(tail, [head|acc])
 
   @doc """
   Returns a new collection, where each item is the result of
   invoking `func` on each corresponding item of the collection.
   """
   @spec map(list, (any -> any)) :: list
-  def map(list, func) do
-    list
-    |> reverse
-    |> reduce [], fn(elem, acc) -> [func.(elem)|acc] end
-  end
+  def map([], _func), do: []
+  def map([head|tail], func), do: [func.(head)|map(tail, func)]
 
   @doc """
   Filters the collection, i.e. returns only those elements for
   which `func` returns a truthy value.
   """
   @spec filter(list, (any -> as_boolean(term))) :: list
-  def filter(list, func) do
-    list
-    |> reverse
-    |> reduce [], fn(elem, acc) ->
-      case func.(elem) do
-        true  -> [elem|acc]
-        false -> acc
-      end
-    end
-  end
+  def filter(list, func), do: for n <- list, func.(n), do: n
 
   @doc """
   Invokes `func` for each element in the collection passing that
@@ -67,9 +53,7 @@ defmodule ListOps do
   @type acc :: any
   @spec reduce(list, acc, ((any, acc) -> acc)) :: acc
   def reduce([], acc, _func), do: acc
-  def reduce([head|tail], acc, func) do
-    reduce(tail, func.(head, acc), func)
-  end
+  def reduce([head|tail], acc, func), do: reduce(tail, func.(head, acc), func)
 
   @doc """
   Inserts the second collection into the end of the first collection.
@@ -78,21 +62,14 @@ defmodule ListOps do
   collection followed by the elements from the second collection.
   """
   @spec append(list, list) :: list
-  def append(list_a, list_b) do
-    list_a
-    |> reverse
-    |> reduce list_b, fn(elem, acc) -> [elem|acc] end
-  end
+  def append([], b), do: b
+  def append([head|tail], b), do: [head | append(tail, b)]
 
   @doc """
   Given an enumerable of enumerables, concatenates the enumerables
   into a single list.
   """
   @spec concat([[any]]) :: [any]
-  def concat(list_of_lists) do
-    list_of_lists
-    |> reverse
-    |> reduce [], fn(elem, acc) -> append elem, acc end
-  end
-
+  def concat([]), do: []
+  def concat([head|tail]), do: append(head,concat(tail))
 end
