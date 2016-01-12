@@ -8,7 +8,6 @@ defmodule DNA do
   4
   """
   @spec hamming_distance([char], [char]) :: non_neg_integer
-  # def hamming_distance(strand, strand), do: 0
   def hamming_distance(strand1, strand2) when length(strand1) == length(strand2) do
     Enum.zip(strand1, strand2)
     |> Enum.count(fn({a, b}) -> a !== b end)
