@@ -16,19 +16,15 @@ defmodule Phone do
 
   defp scrub_number(raw), do: Regex.replace(~r"\W", raw, "")
 
-  defp validate(number) do
-    number_length = number |> to_char_list |> length
-    cond do
-      number_length == 10 ->
-        number
-      number_length < 10 ->
-        @bad_number
-      number_length == 11 && String.starts_with?(number, "1") ->
-        String.slice(number, 1..11)
-      number_length > 10 ->
-        @bad_number
-    end
+  defp split_number(number) do
+    [String.slice(number, 0..2),
+     String.slice(number, 3..5),
+     String.slice(number, 6..9)]
   end
+
+  defp validate(number) when byte_size(number) == 10, do: number
+  defp validate("1" <> last_ten = number) when byte_size(number) == 11, do: last_ten
+  defp validate(_), do: @bad_number
 
   @doc """
   Extract the area code from a phone number
@@ -37,27 +33,8 @@ defmodule Phone do
   def area_code(raw) do
     raw
     |> number
-    |> String.slice(0..2)
-  end
-
-  @doc """
-  Extract the prefix code from a phone number
-  """
-  @spec prefix(String.t) :: String.t
-  def prefix(raw) do
-    raw
-    |> number
-    |> String.slice(3..5)
-  end
-
-  @doc """
-  Extract the line number from a phone number
-  """
-  @spec line(String.t) :: String.t
-  def line(raw) do
-    raw
-    |> number
-    |> String.slice(6..9)
+    |> split_number
+    |> hd
   end
 
   @doc """
@@ -65,6 +42,7 @@ defmodule Phone do
   """
   @spec pretty(String.t) :: String.t
   def pretty(raw) do
-    "(#{area_code(raw)}) #{prefix(raw)}-#{line(raw)}"
+    [area_code, prefix, line] = raw |> number |> split_number
+    "(#{area_code}) #{prefix}-#{line}"
   end
 end
