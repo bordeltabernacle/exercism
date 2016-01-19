@@ -26,9 +26,6 @@ defmodule School do
   """
   @spec sort(Dict) :: Dict.t
   def sort(db) do
-    db
-    |> Enum.map(fn {k,v} -> {k, Enum.sort(v)} end)
-    |> Enum.sort
-    |> Enum.into(%{})
+    db |> Enum.into(%{}, fn {k,v} -> {k, Enum.sort(v)} end)
   end
 end
