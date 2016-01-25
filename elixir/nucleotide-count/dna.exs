@@ -14,12 +14,13 @@ defmodule DNA do
   """
   @spec count([char], char) :: non_neg_integer
   def count(strand, nucleotide) do
-    do_count(valid_strand?(strand), valid_nucleotide?(nucleotide))
+    {valid_strand?(strand), valid_nucleotide?(nucleotide)}
+    |> _count
   end
 
-  defp do_count(false, _), do: raise ArgumentError
-  defp do_count(_, false), do: raise ArgumentError
-  defp do_count(strand, nucleotide) do
+  defp _count({false, _}), do: raise ArgumentError
+  defp _count({_, false}), do: raise ArgumentError
+  defp _count({strand, nucleotide}) do
     strand
     |> Enum.count(&(&1 == nucleotide))
   end
