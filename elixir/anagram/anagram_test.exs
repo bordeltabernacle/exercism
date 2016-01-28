@@ -5,7 +5,7 @@ else
 end
 
 ExUnit.start
-ExUnit.configure exclude: :pending, trace: true
+ExUnit.configure trace: true
 
 defmodule AnagramTest do
   use ExUnit.Case
@@ -64,13 +64,13 @@ defmodule AnagramTest do
     assert matches == ["Carthorse"]
   end
 
-  # @tag :pending
+  @tag :skip
   test "anagrams must not be the source word" do
     matches = Anagram.match "corn", ["corn", "dark", "Corn", "rank", "CORN", "cron", "park"]
     assert matches == ["cron"]
   end
 
-  # @tag :pending
+  @tag :skip
   test "do not detect words based on checksum" do
     matches = Anagram.match "mass", ["last"]
     assert matches == []
