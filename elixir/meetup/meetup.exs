@@ -9,6 +9,20 @@ defmodule Meetup do
 
   @type schedule :: :first | :second | :third | :fourth | :last | :teenth
 
+  @dofw %{monday: 1,
+          tuesday: 2,
+          wednesday: 3,
+          thursday: 4,
+          friday: 5,
+          saturday: 6,
+          sunday: 7}
+
+  @schedule_start %{first: 1,
+                    second: 8,
+                    third: 15,
+                    fourth: 22,
+                    teenth: 13}
+
   @doc """
   Calculate a meetup date.
 
@@ -18,10 +32,10 @@ defmodule Meetup do
   @spec meetup(pos_integer, pos_integer, weekday, schedule) :: :calendar.date
   def meetup(year, month, weekday, :last) do
     start_date = :calendar.last_day_of_the_month(year, month) - 6
-    _meetup(year, month, dofw(weekday), start_date)
+    _meetup(year, month, @dofw[weekday], start_date)
   end
   def meetup(year, month, weekday, schedule) do
-    _meetup(year, month, dofw(weekday), start_date(schedule))
+    _meetup(year, month, @dofw[weekday], @schedule_start[schedule])
   end
 
   defp _meetup(y, m, day, start) do
@@ -32,19 +46,5 @@ defmodule Meetup do
         {y, m, start}
     end
   end
-
-  defp dofw(:monday),    do: 1
-  defp dofw(:tuesday),   do: 2
-  defp dofw(:wednesday), do: 3
-  defp dofw(:thursday),  do: 4
-  defp dofw(:friday),    do: 5
-  defp dofw(:saturday),  do: 6
-  defp dofw(:sunday),    do: 7
-
-  defp start_date(:first),  do: 1
-  defp start_date(:second), do: 8
-  defp start_date(:third),  do: 15
-  defp start_date(:fourth), do: 22
-  defp start_date(:teenth), do: 13
 end
 
