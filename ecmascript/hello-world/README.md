@@ -30,7 +30,7 @@ It will also provide you with a safety net to explore other solutions without br
 2. Write some code to fix the test you picked.
 3. Re-run the tests to confirm the test is now passing.
 4. Repeat from step 1.
-5. [Submit your solution](http://help.exercism.io/submitting-exercises.html).
+5. Submit your solution (`exercism submit /path/to/file`)
 
 ## Instructions
 
@@ -43,7 +43,7 @@ It's important to remember that the goal is to make code as expressive and reada
 Go through the setup instructions for ECMAScript to
 install the necessary dependencies:
 
-http://help.exercism.io/getting-started-with-ecmascript.html
+http://exercism.io/languages/ecmascript
 
 ## Requirements
 

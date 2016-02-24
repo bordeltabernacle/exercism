@@ -1,10 +1,10 @@
 import HelloWorld from './hello-world';
 
 describe('Hello World', () => {
-  var helloWorld = new HelloWorld();
+  const helloWorld = new HelloWorld();
 
   it('says hello world with no name', () => {
-    expect(helloWorld.hello('')).toEqual('Hello, World!');
+    expect(helloWorld.hello()).toEqual('Hello, World!');
   });
 
   xit('says hello to bob', () => {
