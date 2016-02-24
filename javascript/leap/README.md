@@ -2,7 +2,7 @@
 
 Write a program that will take a year and report if it is a leap year.
 
-The tricky thing here is that a leap year occurs:
+The tricky thing here is that a leap year in the Gregorian calendar occurs:
 
 ```plain
 on every year that is evenly divisible by 4
@@ -28,7 +28,7 @@ phenomenon, go watch [this youtube video][video].
 Go through the setup instructions for JavaScript to
 install the necessary dependencies:
 
-http://help.exercism.io/getting-started-with-javascript.html
+http://exercism.io/languages/javascript
 
 ## Making the Test Suite Pass
 
