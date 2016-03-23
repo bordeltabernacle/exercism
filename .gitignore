@@ -2,3 +2,4 @@
 *.cache/
 *.beam
 node_modules/
+Exercism.VisualStudio-master/
