@@ -1,3 +1,26 @@
+## Ignore languages
+/coffeescript/
+/cpp/
+/csharp/
+/elisp/
+/erlang/
+/haskell/
+/java/
+/lfe/
+/lisp/
+/lua/
+/objective-c/
+/ocaml/
+/perl5/
+/php/
+/plsql/
+/racket/
+/ruby/
+/rust/
+/scala/
+/scheme/
+/swift/
+
 *.pyc
 *.cache/
 *.beam
