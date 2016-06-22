@@ -2,13 +2,17 @@ def distance(strandA, strandB):
     """
     Calculates the Hamming difference between two DNA strands
     """
-    distance = 0
-
     if len(strandA) != len(strandB):
         raise ValueError("Strands are of unequal length.")
 
-    for x, y in zip(strandA, strandB):
-        if x != y:
-            distance += 1
+    combined = zip(strandA, strandB)
+    differ = filter(different, combined)
+    return len(list(differ))
 
-    return distance
+
+def different(pair):
+    """
+    Asserts whether the pair in a tuple are different
+    """
+    (x, y) = pair
+    return x != y
