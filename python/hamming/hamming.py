@@ -6,7 +6,7 @@ def distance(strandA, strandB):
         raise ValueError("Strands are of unequal length.")
 
     pairs = zip(strandA, strandB)
-    return sum([1 for pair in pairs if different(pair)])
+    return sum(1 for (x, y) in pairs if x != y)
 
 
 def different(pair):
