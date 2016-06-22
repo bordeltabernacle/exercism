@@ -2,6 +2,8 @@ package leap
 
 const TestVersion = 1
 
+// return true if the given year is a leap year,
+// otherwise return false
 func IsLeapYear(year int) bool {
 	switch {
 	case year%4 != 0:
