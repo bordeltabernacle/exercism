@@ -5,9 +5,8 @@ def distance(strandA, strandB):
     if len(strandA) != len(strandB):
         raise ValueError("Strands are of unequal length.")
 
-    combined = zip(strandA, strandB)
-    differ = filter(different, combined)
-    return len(list(differ))
+    pairs = zip(strandA, strandB)
+    return sum([1 for pair in pairs if different(e)])
 
 
 def different(pair):
@@ -16,3 +15,4 @@ def different(pair):
     """
     (x, y) = pair
     return x != y
+
