@@ -8,11 +8,3 @@ def distance(strandA, strandB):
     pairs = zip(strandA, strandB)
     return sum(1 for (x, y) in pairs if x != y)
 
-
-def different(pair):
-    """
-    Asserts whether the pair in a tuple are different
-    """
-    (x, y) = pair
-    return x != y
-
