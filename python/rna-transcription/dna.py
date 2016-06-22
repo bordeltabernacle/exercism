@@ -5,5 +5,5 @@ def to_rna(dna):
     '''
     Given a DNA strand, returns its RNA complement (per RNA transcription)
     '''
-    return dna.translate(maketrans("GCAT", "CGUA"))
-
+    key = maketrans("GCAT", "CGUA")
+    return dna.translate(key)
