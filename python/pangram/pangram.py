@@ -2,4 +2,8 @@ import string
 
 
 def is_pangram(sentence):
-    return all(letter in sentence.lower() for letter in list(string.ascii_lowercase))
+    alphabet = list(string.ascii_lowercase)
+    for letter in alphabet:
+        if letter not in sentence.lower():
+            return False
+    return True
