@@ -19,6 +19,5 @@ def decode(data):
         if k:
             count = int(elem)
         else:
-            print(elem)
             decoded += '{0}{1}'.format(elem[0] * count, elem[1:])
     return decoded
