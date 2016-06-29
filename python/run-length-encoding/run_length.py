@@ -1,32 +1,24 @@
-import string
+from itertools import groupby
 
 
 def encode(data):
-    prev, encoded, count = '', '', 0
-    for el in data:
-        if el != prev:
-            if count > 1:
-                encoded += str(count)
-            encoded += prev
-            prev = el
-            count = 0
-        if el == prev:
-            count += 1
-    if count > 1:
-        encoded += str(count)
-    encoded += prev
+    encoded = ''
+    for k, v in groupby(data):
+        count = len(list(v))
+        if count > 1:
+            encoded += '{1}{0}'.format(k, count)
+        else:
+            encoded += k
     return encoded
 
 
 def decode(data):
-    decoded, count = '', ''
-    for el in data:
-        if el in string.digits:
-            count += el
+    decoded, count = '', 1
+    for k, v in groupby(data, str.isdigit):
+        elem = "".join(v)
+        if k:
+            count = int(elem)
         else:
-            if count == '':
-                decoded += el
-            else:
-                decoded += (el * int(count))
-                count = ''
+            print(elem)
+            decoded += '{0}{1}'.format(elem[0] * count, elem[1:])
     return decoded
