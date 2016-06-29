@@ -19,11 +19,9 @@ def encode(data):
 
 
 def decode(data):
-    decoded = ''
-    num = string.digits
-    count = ''
+    decoded, count = '', ''
     for el in data:
-        if el in num:
+        if el in string.digits:
             count += el
         else:
             if count == '':
