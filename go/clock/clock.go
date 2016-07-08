@@ -1,4 +1,4 @@
-package main
+package clock
 
 import (
 	"fmt"
@@ -8,12 +8,12 @@ const testVersion = 4
 
 type Clock int
 
-func new(h, m int) Clock {
+func New(h, m int) Clock {
 	c := Clock((h*60 + m) % 1440)
 	if c < 0 {
 		c += 1440
 	}
-	fmt.Println(c)
+	return c
 }
 
 func (c Clock) Add(m int) Clock {
