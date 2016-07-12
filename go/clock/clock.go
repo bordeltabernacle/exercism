@@ -24,10 +24,5 @@ func (c Clock) String() string {
 	return fmt.Sprintf("%02d:%02d", getHours(c), getMins(c))
 }
 
-func getHours(c Clock) int {
-	return int(c) / 60
-}
-
-func getMins(c Clock) int {
-	return int(c) % 60
-}
+func getHours(c Clock) int { return int(c) / 60 }
+func getMins(c Clock) int  { return int(c) % 60 }
