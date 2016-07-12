@@ -11,6 +11,11 @@ type Clock struct {
 }
 
 func New(h, m int) Clock {
+	h, m = normalize(h, m)
+	return Clock{h, m}
+}
+
+func normalize(h, m int) (nh, nm int) {
 	h = (h + (m / 60)) % 24
 	m = m % 60
 	if m < 0 {
@@ -20,7 +25,7 @@ func New(h, m int) Clock {
 	if h < 0 {
 		h += 24
 	}
-	return Clock{h, m}
+	return h, m
 }
 
 func (c Clock) Add(m int) Clock {
