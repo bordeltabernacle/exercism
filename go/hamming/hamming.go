@@ -4,15 +4,17 @@ import "errors"
 
 const testVersion = 4
 
-func Distance(a, b string) (int, error) {
-	var dist int
+func Distance(a, b string) (dist int, err error) {
+
 	if len(a) != len(b) {
-		return 0, errors.New("DNA strands of unequal length")
+		return dist, errors.New("DNA strands of unequal length")
 	}
-	for i := 0; i < len(a); i++ {
+
+	for i := range a {
 		if a[i] != b[i] {
 			dist++
 		}
 	}
-	return dist, nil
+
+	return
 }
