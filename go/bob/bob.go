@@ -1,3 +1,17 @@
-package bob // package name must match the package name in bob_test.go
+package bob
 
-const testVersion = 2 // same as targetTestVersion
+import (
+	"strings"
+)
+
+const testVersion = 2
+
+func Hey(s string) (response string) {
+	if s == strings.ToUpper(s) {
+		return "Whoa, chill out!"
+	}
+	if strings.HasSuffix(s, "?") {
+		return "Sure."
+	}
+	return "Whatever."
+}
