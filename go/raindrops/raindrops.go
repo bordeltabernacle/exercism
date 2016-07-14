@@ -6,8 +6,7 @@ import (
 
 const testVersion = 2
 
-func Convert(n int) string {
-	var raindrop string
+func Convert(n int) (raindrop string) {
 	if n%3 == 0 {
 		raindrop += "Pling"
 	}
@@ -18,7 +17,7 @@ func Convert(n int) string {
 		raindrop += "Plong"
 	}
 	if raindrop == "" {
-		return strconv.Itoa(n)
+		raindrop = strconv.Itoa(n)
 	}
-	return raindrop
+	return
 }
