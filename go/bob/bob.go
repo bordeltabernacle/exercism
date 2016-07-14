@@ -2,24 +2,32 @@ package bob
 
 import (
 	"strings"
-	"unicode"
 )
 
 const testVersion = 2
 
 func Hey(s string) (response string) {
-	if strings.TrimSpace(s) == "" {
-		return "Fine. Be that way!"
+	switch s = strings.TrimSpace(s); {
+	case silent(s):
+		response = "Fine. Be that way!"
+	case shouting(s):
+		response = "Whoa, chill out!"
+	case question(s):
+		response = "Sure."
+	default:
+		response = "Whatever."
 	}
-	for _, c := range s {
-		if unicode.IsLetter(c) {
-			if s == strings.ToUpper(s) {
-				return "Whoa, chill out!"
-			}
-		}
-	}
-	if strings.HasSuffix(strings.TrimRight(s, " "), "?") {
-		return "Sure."
-	}
-	return "Whatever."
+	return
+}
+
+func silent(s string) bool {
+	return s == ""
+}
+
+func question(s string) bool {
+	return strings.HasSuffix(s, "?")
+}
+
+func shouting(s string) bool {
+	return s == strings.ToUpper(s) && strings.ToUpper(s) != strings.ToLower(s)
 }
