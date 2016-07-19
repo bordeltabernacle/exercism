@@ -16,16 +16,14 @@ def meetup_day(year, month, dotw, when):
     DOTW = [d for d in calendar.day_name]
     (_, no_of_days) = calendar.monthrange(year, month)
     if when == "last":
-        while no_of_days > 1:
-            if date(year, month, no_of_days).weekday() == DOTW.index(dotw):
-                return date(year, month, no_of_days)
-            no_of_days -= 1
+        for day in reversed(range(no_of_days + 1)):
+            if date(year, month, day).weekday() == DOTW.index(dotw):
+                return date(year, month, day)
         raise Exception
     else:
-        i = WEEK[when]
-        while i < no_of_days:
-            if date(year, month, i).weekday() == DOTW.index(dotw):
-                return date(year, month, i)
-            i += 1
+        for day in range(WEEK[when], no_of_days + 1):
+            if date(year, month, day).weekday() == DOTW.index(dotw):
+                return date(year, month, day)
         raise Exception
 
+#  def scan(year, month, days, dotw):
