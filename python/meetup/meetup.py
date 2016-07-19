@@ -26,10 +26,12 @@ def meetup_day(year, month, dotw, when):
             if date(year, month, no_of_days).weekday() == DOTW.index(dotw.lower()):
                 return date(year, month, no_of_days)
             no_of_days -= 1
+        raise Exception
     else:
         i = WEEK[when]
         while i < no_of_days:
             if date(year, month, i).weekday() == DOTW.index(dotw.lower()):
                 return date(year, month, i)
             i += 1
+        raise Exception
 
