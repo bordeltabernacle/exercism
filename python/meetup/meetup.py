@@ -3,14 +3,14 @@ import calendar
 
 
 def meetup_day(year, month, dotw, when):
-    DOTW = [d for d in calendar.day_name]
+    all_days = [d for d in calendar.day_name]
     (_, days) = calendar.monthrange(year, month)
-    WEEK = {"1st": 1,"2nd": 8,"3rd": 15,"4th": 22,"5th": 28,"teenth": 13}
+    start_date = {"1st": 1,"2nd": 8,"3rd": 15,"4th": 22,"5th": 28,"teenth": 13}
     if when == "last":
-        return _get_day(year, month, DOTW.index(dotw),
+        return _get_day(year, month, all_days.index(dotw),
                 reversed(range(days - 6, days + 1)))
-    return _get_day(year, month, DOTW.index(dotw),
-            range(WEEK[when], days + 1))
+    return _get_day(year, month, all_days.index(dotw),
+            range(start_date[when], days + 1))
 
 
 def _get_day(year, month, dotw, days):
