@@ -6,7 +6,9 @@ import (
 
 const testVersion = 2
 
+// Hey responds to statements with the voice of Bob, a lackadaisical teen
 func Hey(s string) (response string) {
+	new = 0
 	switch s = strings.TrimSpace(s); {
 	case silent(s):
 		response = "Fine. Be that way!"
