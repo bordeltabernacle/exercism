@@ -1,14 +1,7 @@
 from datetime import date
-from calendar import monthrange
+import calendar
 
 
-DOTW = ["monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday",
-        "sunday"]
 WEEK = {
         "1st": 1,
         "2nd": 8,
@@ -20,7 +13,8 @@ WEEK = {
 
 
 def meetup_day(year, month, dotw, when):
-    (_, no_of_days) = monthrange(year, month)
+    DOTW = [d for d in calendar.day_name]
+    (_, no_of_days) = calendar.monthrange(year, month)
     if when == "last":
         while no_of_days > 1:
             if date(year, month, no_of_days).weekday() == DOTW.index(dotw.lower()):
