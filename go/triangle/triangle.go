@@ -35,18 +35,14 @@ func triTest(a, b, c float64) bool {
 	return validSide(a) && validSide(b) && validSide(c) && meetsTriIneq(a, b, c)
 }
 
+// validSide tests a side is not infinity,
+// not NaN & greater than zero
 func validSide(s float64) bool {
-	if math.IsInf(s, 0) || math.IsNaN(s) || s <= 0 {
-		return false
-	}
-	return true
+	return !(math.IsInf(s, 0) || math.IsNaN(s) || s <= 0)
 }
 
 // meetsTriIneq checks all sides together meet
 // the Triangle Inequality Theorem
 func meetsTriIneq(a, b, c float64) bool {
-	if a+b < c || b+c < a || c+a < b {
-		return false
-	}
-	return true
+	return !(a+b < c || b+c < a || c+a < b)
 }
