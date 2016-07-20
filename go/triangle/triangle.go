@@ -36,13 +36,7 @@ func triTest(a, b, c float64) bool {
 	if a <= 0 || b <= 0 || c <= 0 {
 		return false
 	}
-	if a+b < c {
-		return false
-	}
-	if b+c < a {
-		return false
-	}
-	if c+a < b {
+	if a+b < c || b+c < a || c+a < b {
 		return false
 	}
 	return true
