@@ -33,6 +33,7 @@ func KindFromSides(a, b, c float64) Kind {
 // triTest tests if the given sides form a valid triangle
 func triTest(a, b, c float64) bool {
 	for _, n := range []float64{a, b, c} {
+		// return as soon as there is an invalid side
 		if !validSide(n) {
 			return false
 		}
