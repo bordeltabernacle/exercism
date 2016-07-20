@@ -18,16 +18,16 @@ const (
 // KindFromSides determines which kind of triangle
 // is represented by the given three sides; a, b & c
 func KindFromSides(a, b, c float64) Kind {
-	if triTest(a, b, c) {
-		if a == b && b == c {
-			return Equ
-		}
-		if a == b || b == c || a == c {
-			return Iso
-		}
-		return Sca
+	if !triTest(a, b, c) {
+		return NaT
 	}
-	return NaT
+	if a == b && b == c {
+		return Equ
+	}
+	if a == b || b == c || a == c {
+		return Iso
+	}
+	return Sca
 }
 
 // triTest tests if the given sides form a valid triangle
