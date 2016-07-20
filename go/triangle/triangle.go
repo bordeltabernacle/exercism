@@ -1,18 +1,18 @@
+// Package triangle loves geometry
 package triangle
 
 import "math"
-
-const testVersion = 2
 
 // Kind implements the different kinds of triangle
 type Kind int
 
 // Identifiers for the different kinds of triangle
 const (
-	NaT = iota // not a triangle
-	Equ        // equilateral
-	Iso        // isosceles
-	Sca        // scalene
+	testVersion = 2
+	NaT         = iota // not a triangle
+	Equ                // equilateral
+	Iso                // isosceles
+	Sca                // scalene
 )
 
 // KindFromSides determines which kind of triangle
