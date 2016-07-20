@@ -5,14 +5,14 @@ import "math"
 const testVersion = 2
 
 // Kind implements the different kinds of triangle
-type Kind string
+type Kind int
 
 // Identifiers for the different kinds of triangle
 const (
-	NaT Kind = "not a triangle"
-	Equ Kind = "equilateral"
-	Iso Kind = "isosceles"
-	Sca Kind = "scalene"
+	NaT = iota // not a triangle
+	Equ        // equilateral
+	Iso        // isosceles
+	Sca        // scalene
 )
 
 // KindFromSides determines which kind of triangle
