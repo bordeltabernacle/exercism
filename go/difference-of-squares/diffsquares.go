@@ -1,24 +1,21 @@
-// Package diffsquares provides ...
 package diffsquares
-
-import "math"
 
 func Difference(n int) int {
 	return SquareOfSums(n) - SumOfSquares(n)
 }
 
 func SquareOfSums(n int) int {
-	var sum int
+	sum := 0
 	for i := 1; i <= n; i++ {
 		sum += i
 	}
-	return int(math.Pow(float64(sum), 2))
+	return sum * sum
 }
 
 func SumOfSquares(n int) int {
-	var sum int
+	sum := 0
 	for i := 1; i <= n; i++ {
-		sum += int(math.Pow(float64(i), 2))
+		sum += i * i
 	}
 	return sum
 }
