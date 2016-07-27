@@ -5,22 +5,19 @@ class Clock:
         self.time()
 
     def time(self):
-        h = (self.hours + (self.minutes / 60)) % 24
-        m = self.minutes % 60
-        if m < 0:
-            m += 60
-            h -= 1
-        if h < 0:
-            h += 24
-        return (int(h), int(m))
+        t = (self.hours * 60 + self.minutes) % 1440
+        if t < 0:
+            t += 1440
+        self.hours = int(t / 60)
+        self.minutes = int(t % 60)
+        return self
 
     def add(self, minutes):
         self.minutes += minutes
-        return self
+        return self.time()
 
     def __repr__(self):
-        (h, m) = self.time()
-        return "{h:0>2d}:{m:0>2d}".format(h=h, m=m)
+        return "{h:0>2d}:{m:0>2d}".format(h=self.hours, m=self.minutes)
 
     def __eq__(self, other):
         return repr(self) == repr(other)
