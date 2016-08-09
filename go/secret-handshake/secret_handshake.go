@@ -8,9 +8,8 @@ import (
 var secrets = []string{"wink", "double blink", "close your eyes", "jump"}
 
 func Handshake(code int) (handshake []string) {
-	if code >= 32 {
-		code = code % 32
-	}
+
+	code %= 32
 
 	if code <= 0 {
 		return nil
@@ -19,6 +18,7 @@ func Handshake(code int) (handshake []string) {
 	converted := fmt.Sprintf("%b", code)
 	var res []string
 	sixteen := false
+
 	for i := len(converted) - 1; i > -1; i-- {
 		res = append(res, fmt.Sprintf("%c", converted[i]))
 	}
@@ -35,10 +35,16 @@ func Handshake(code int) (handshake []string) {
 			handshake = append(handshake, secrets[i])
 		}
 	}
+
 	if sixteen {
-		for i, j := 0, len(handshake)-1; i < j; i, j = i+1, j-1 {
-			handshake[i], handshake[j] = handshake[j], handshake[i]
-		}
+		return reversed(handshake)
 	}
 	return
+}
+
+func reversed(s []string) []string {
+	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
+		s[i], s[j] = s[j], s[i]
+	}
+	return s
 }
