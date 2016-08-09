@@ -3,5 +3,6 @@ def detect_anagrams(word, candidates):
 
 
 def is_anagram(a, b):
-    return sorted(a.lower()) == sorted(b.lower()) and a.lower() != b.lower()
+    a, b = a.lower(), b.lower()
+    return sorted(a) == sorted(b) and a != b
 
