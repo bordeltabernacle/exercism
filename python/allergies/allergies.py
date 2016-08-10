@@ -1,16 +1,22 @@
 class Allergies:
     def __init__(self, score):
         self.score = score
-        self._as = self._scores()
-        self.lst = [k for k in self._as.keys() if self._as.get(k)]
+        self.allergens = [
+            "eggs",
+            "peanuts",
+            "shellfish",
+            "strawberries",
+            "tomatoes",
+            "chocolate",
+            "pollen",
+            "cats",
+        ]
 
-    def _scores(self):
-        binary_score = list(bin(self.score))[2:][::-1]
-        reactions = [int(i) for i in binary_score]
-        allergies = """
-        eggs peanuts shellfish strawberries tomatoes chocolate pollen cats
-        """.split()
-        return dict(zip(allergies, reactions))
+        _binary_score = list(reversed(bin(score)))[:-2]
+        _reactions = [int(i) for i in _binary_score]
+        _chart = dict(zip(self.allergens, _reactions))
+
+        self.lst = [k for k in _chart.keys() if _chart.get(k)]
 
     def is_allergic_to(self, allergy):
-        return bool(self._as.get(allergy))
+        return allergy in self.lst
