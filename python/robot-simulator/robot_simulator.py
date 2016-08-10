@@ -1,7 +1,4 @@
-NORTH = "north"
-SOUTH = "south"
-EAST = "east"
-WEST = "west"
+NORTH, EAST, SOUTH, WEST = range(4)
 
 
 class Robot:
@@ -11,16 +8,10 @@ class Robot:
         self.bearing = bearing
 
     def turn_right(self):
-        i = self._directions.index(self.bearing) + 1
-        if i == 4:
-            i = 0
-        self.bearing = self._directions[i]
+        self.bearing = self._directions[(self.bearing + 1) % 4]
 
     def turn_left(self):
-        i = self._directions.index(self.bearing) - 1
-        if i == -1:
-            i = 3
-        self.bearing = self._directions[i]
+        self.bearing = self._directions[self.bearing - 1]
 
     def advance(self):
         actions = {NORTH: (self.coordinates[0], self.coordinates[1] + 1),
