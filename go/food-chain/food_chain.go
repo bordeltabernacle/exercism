@@ -23,16 +23,17 @@ var eaten = []struct {
 func Verse(v int) (verse string) {
 	v--
 	verse = fmt.Sprintf("I know an old lady who swallowed a %s.\n%s", eaten[v].beast, eaten[v].comment)
-	if v > 0 && v < 7 {
-		for i := v; i > 0; i-- {
-			verse += fmt.Sprintf("\nShe swallowed the %s to catch the %s", eaten[i].beast, eaten[i-1].beast)
-			if i == 2 {
-				verse += fmt.Sprintf(" that %s", wriggle)
-			}
-			verse += fmt.Sprintf(".")
-		}
-		verse += fmt.Sprintf("\n%s", eaten[0].comment)
+	if v == 0 || v == 7 {
+		return
 	}
+	for ; v > 0; v-- {
+		verse += fmt.Sprintf("\nShe swallowed the %s to catch the %s", eaten[v].beast, eaten[v-1].beast)
+		if v == 2 {
+			verse += fmt.Sprintf(" that %s", wriggle)
+		}
+		verse += fmt.Sprintf(".")
+	}
+	verse += fmt.Sprintf("\n%s", eaten[0].comment)
 	return
 }
 
