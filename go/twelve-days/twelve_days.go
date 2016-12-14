@@ -5,8 +5,8 @@ import "fmt"
 const testVersion = 1
 
 var days = []struct {
-	day     string
-	present string
+	day  string
+	gift string
 }{
 	{"first", "a Partridge in a Pear Tree."},
 	{"second", "two Turtle Doves"},
@@ -24,7 +24,7 @@ var days = []struct {
 
 func Verse(v int) (verse string) {
 	v--
-	verse = fmt.Sprintf("On the %s day of Christmas my true love gave to me, %s", days[v].day, days[v].present)
+	verse = fmt.Sprintf("On the %s day of Christmas my true love gave to me, %s", days[v].day, days[v].gift)
 
 	if v == 0 {
 		return
@@ -32,16 +32,16 @@ func Verse(v int) (verse string) {
 
 	for ; v > 0; v-- {
 		if v == 1 {
-			verse += fmt.Sprintf(", and %s", days[v-1].present)
+			verse += fmt.Sprintf(", and %s", days[v-1].gift)
 		} else {
-			verse += fmt.Sprintf(", %s", days[v-1].present)
+			verse += fmt.Sprintf(", %s", days[v-1].gift)
 		}
 	}
 	return
 }
 
 func Song() (song string) {
-	for i := 1; i <= 12; i++ {
+	for i := 1; i <= len(days); i++ {
 		song += fmt.Sprintf("%s\n", Verse(i))
 	}
 	return
