@@ -1,9 +1,8 @@
 package house
 
-import "fmt" s
+import "fmt"
 
-
-var lines = []string{
+var verses = []string{
 	"the horse and the hound and the horn\nthat belonged to",
 	"the farmer sowing his corn\nthat kept",
 	"the rooster that crowed in the morn\nthat woke",
@@ -15,28 +14,27 @@ var lines = []string{
 	"the cat\nthat killed",
 	"the rat\nthat ate",
 	"the malt\nthat lay in",
-	"the house that Jack built.",
 }
 
-func Embed(relPhrase, nounPhrase string) string {
-	return fmt.Sprintf("%s %s", relPhrase, nounPhrase)
+func Embed(pre, post string) string {
+	return fmt.Sprintf("%s %s", pre, post)
 }
 
-func Verse(subject string, relPhrases []string, nounPhrase string) string {
-	if len(relPhrases) == 0 {
-		return Embed(subject, nounPhrase)
+func Verse(pre string, verses []string, post string) string {
+	if len(verses) == 0 {
+		return Embed(pre, post)
 	}
-	return Embed(subject, Verse(relPhrases[0], relPhrases[1:], nounPhrase))
+	return Embed(pre, Verse(verses[0], verses[1:], post))
 }
 
 func Song() (song string) {
 	first := "This is"
-	last := lines[len(lines)-1]
-	for i := 1; i <= len(lines); i++ {
-		start := len(lines) - i
-		end := len(lines) - 1
-		song += Verse(first, lines[start:end], last)
-		if i != len(lines) {
+	last := "the house that Jack built."
+	for i := 0; i <= len(verses); i++ {
+		start := len(verses) - i
+		end := len(verses)
+		song += Verse(first, verses[start:end], last)
+		if i != len(verses) {
 			song += "\n\n"
 		}
 	}
