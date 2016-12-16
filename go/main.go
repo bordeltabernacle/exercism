@@ -1,11 +1,12 @@
 package main
 
 import (
-	foodchain "exercism/food-chain"
 	"fmt"
+
+	"github.com/xgo/exercises/house"
 )
 
 func main() {
-	res := foodchain.Verse(3)
+	res := house.Song()
 	fmt.Printf(res)
 }
