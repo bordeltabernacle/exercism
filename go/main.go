@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/xgo/exercises/house"
+	pascal "github.com/xgo/exercises/pascals-triangle"
 )
 
 func main() {
-	res := house.Song()
-	fmt.Printf(res)
+	res := pascal.Triangle(1)
+	fmt.Printf("%v", res)
 }
