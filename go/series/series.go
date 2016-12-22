@@ -13,3 +13,10 @@ func All(n int, s string) (substrings []string) {
 func UnsafeFirst(n int, s string) string {
 	return s[0:n]
 }
+
+func First(n int, s string) (first string, ok bool) {
+	if n > len(s) {
+		return
+	}
+	return s[0:n], true
+}
