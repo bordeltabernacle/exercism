@@ -1,49 +1,30 @@
 package queenattack
 
-import (
-	"errors"
-	"fmt"
-)
+import "fmt"
 
 const testVersion = 1
 
-// CanQueenAttack ...
 func CanQueenAttack(w, b string) (attack bool, err error) {
+	if err = validSquare(w); err != nil {
+		return false, err
+	}
+	if err = validSquare(b); err != nil {
+		return false, err
+	}
 	if w == b {
-		return false, errors.New("Pieces cannot be in same location")
+		return false, fmt.Errorf("Queens cannot be on same square: %s", w)
 	}
-	wrow, wcol, err := getRowAndCol(w)
-	if err != nil {
-		return false, err
-	}
-	brow, bcol, err := getRowAndCol(b)
-	if err != nil {
-		return false, err
-	}
-	if wrow == brow || wcol == bcol {
+	if w[0] == b[0] || w[1] == b[1] {
 		return true, nil
 	}
-	rowDiff := brow - wrow
-	if rowDiff < 0 {
-		rowDiff = rowDiff * -1
-	}
-	colDiff := bcol - wcol
-	if colDiff < 0 {
-		colDiff = colDiff * -1
-	}
-	if rowDiff == colDiff {
-		return true, nil
-	}
-	return
+	fileDiff := w[0] - b[0]
+	rankDiff := w[1] - b[1]
+	return fileDiff == rankDiff || fileDiff+rankDiff == 0, nil
 }
 
-func getRowAndCol(loc string) (row int, col int, err error) {
-	if len(loc) != 2 {
-		return 0, 0, fmt.Errorf("%s is an invalid location", loc)
+func validSquare(s string) error {
+	if len(s) != 2 || s[0] > 'h' || s[1] > '7' {
+		return fmt.Errorf("Invalid square: %s", s)
 	}
-	if loc[0] > 'h' || loc[1] > '7' {
-		return 0, 0, fmt.Errorf("%s is an invalid location", loc)
-	}
-	return int(loc[0]) - 97, int(loc[1]) - 48, nil
-
+	return nil
 }
