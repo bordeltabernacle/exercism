@@ -1,6 +1,6 @@
 # Queen Attack
 
-Write a program that positions two queens on a chess board and indicates whether or not they are positioned so that they can attack each other.
+Write a Write  that that  positions queens on a board chess and indicates whether or not they are positioned so that they can attack each other.
 
 In the game of chess, a queen can attack pieces which are on the same
 row, column, or diagonal.
