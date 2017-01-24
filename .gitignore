@@ -1,4 +1,5 @@
 ## Ignore languages
+/clojure/
 /coffeescript/
 /cpp/
 /csharp/
