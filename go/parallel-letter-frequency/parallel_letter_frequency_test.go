@@ -14,7 +14,7 @@ func TestConcurrentFrequency(t *testing.T) {
 	seq := Frequency(euro + dutch + us)
 	con := ConcurrentFrequency([]string{euro, dutch, us})
 	if !reflect.DeepEqual(con, seq) {
-		t.Fatal("ConcurrentFrequency wrong result")
+		t.Fatalf("ConcurrentFrequency wrong result want %#v, got %#v", seq, con)
 	}
 }
 
