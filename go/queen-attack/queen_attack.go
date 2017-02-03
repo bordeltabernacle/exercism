@@ -5,11 +5,8 @@ import "fmt"
 const testVersion = 1
 
 func CanQueenAttack(w, b string) (attack bool, err error) {
-	if err = validSquare(w); err != nil {
-		return false, err
-	}
-	if err = validSquare(b); err != nil {
-		return false, err
+	if !validSquare(w) || !validSquare(b) {
+		return false, fmt.Errorf("Invalid square: %s", w+b)
 	}
 	if w == b {
 		return false, fmt.Errorf("Queens cannot be on same square: %s", w)
@@ -22,9 +19,6 @@ func CanQueenAttack(w, b string) (attack bool, err error) {
 	return fileDiff == rankDiff || fileDiff+rankDiff == 0, nil
 }
 
-func validSquare(s string) error {
-	if len(s) != 2 || s[0] > 'h' || s[1] > '7' {
-		return fmt.Errorf("Invalid square: %s", s)
-	}
-	return nil
+func validSquare(s string) bool {
+	return !(len(s) != 2 || s[0] > 'h' || s[0] < 'a' || s[1] > '7' || s[1] < '1')
 }

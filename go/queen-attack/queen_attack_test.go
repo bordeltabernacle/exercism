@@ -15,6 +15,7 @@ var tests = []struct {
 	{"b4", "b4", false, false},      // same square
 	{"a8", "b9", false, false},      // off board
 	{"here", "there", false, false}, // invalid
+	{"@!", "@!", false, false},      // invalid
 	{"", "", false, false},
 
 	{"b3", "d7", false, true}, // no attack
