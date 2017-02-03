@@ -20,5 +20,7 @@ func CanQueenAttack(w, b string) (attack bool, err error) {
 }
 
 func validSquare(s string) bool {
-	return !(len(s) != 2 || s[0] > 'h' || s[0] < 'a' || s[1] > '7' || s[1] < '1')
+	return !(len(s) != 2 ||
+		s[0] > 'h' || s[0] < 'a' ||
+		s[1] > '7' || s[1] < '1')
 }
