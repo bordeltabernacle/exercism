@@ -1,21 +1,19 @@
 package pangram
 
-import "strings"
+import "unicode"
 
 const testVersion = 1
 
-func IsPangram(sentence string) bool {
-
+func IsPangram(s string) bool {
 	if len(sentence) < 26 {
 		return false
 	}
-
-	sentence = strings.ToLower(sentence)
-
-	for i := int('a'); i <= int('z'); i++ {
-		if !strings.Contains(sentence, string(i)) {
-			return false
+	alphabet := map[rune]int{}
+	for _, r := range sentence {
+		lr := unicode.ToLower(r)
+		if lr >= 'a' && lr <= 'z' {
+			alphabet[lr] += 1
 		}
 	}
-	return true
+	return len(alphabet) == 26
 }
