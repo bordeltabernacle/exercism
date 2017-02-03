@@ -12,8 +12,5 @@ func Square(n int) (uint64, error) {
 }
 
 func Total() (t uint64) {
-	for i := 0; i < 64; i++ {
-		t += 1 << uint(i)
-	}
-	return
+	return 1<<64 - 1
 }
