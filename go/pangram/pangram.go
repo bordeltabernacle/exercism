@@ -2,18 +2,19 @@ package pangram
 
 import "unicode"
 
-const testVersion = 1
+const (
+	testVersion = 1
+	allChars    = 0x03ffffff
+)
 
 func IsPangram(s string) bool {
-	if len(sentence) < 26 {
-		return false
-	}
-	alphabet := map[rune]int{}
-	for _, r := range sentence {
-		lr := unicode.ToLower(r)
-		if lr >= 'a' && lr <= 'z' {
-			alphabet[lr] += 1
+	var set int32
+
+	for _, r := range s {
+		if lr := unicode.ToLower(r); lr >= 'a' && lr <= 'z' {
+			set |= 1 << (byte(lr) - 'a')
 		}
 	}
-	return len(alphabet) == 26
+
+	return allChars == set
 }
