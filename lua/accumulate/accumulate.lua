@@ -1,9 +1,7 @@
-function accumulate(input, fn)
+return function(input, fn)
 	local output = {}
-	for _, v in ipairs(input) do
-		table.insert(output, fn(v))
+	for index, value in pairs(input) do
+		output[index] = fn(value)
 	end
 	return output
 end
-
-return accumulate
