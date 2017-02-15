@@ -1,13 +1,14 @@
 local Hamming = {}
 
-function Hamming.compute(strandA, strandB)
-	local distance = 0
-	for i = 1, string.len(strandA) do
-		if string.sub(strandA, i, i) ~= string.sub(strandB, i, i) then
-			distance = distance + 1
+function Hamming.compute(a, b)
+	local d = 0
+	if #a ~= #b then return -1 end
+	for i = 1, #a do
+		if a:byte(i) ~= b:byte(i) then
+			d = d + 1
 		end
 	end
-	return distance
+	return d
 end
 
 return Hamming
