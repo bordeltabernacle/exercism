@@ -1,4 +1,4 @@
-class Hamming {
+export default class Hamming {
 
   compute(a, b) {
     if (a.length !== b.length) {
@@ -15,5 +15,3 @@ class Hamming {
     return distance;
   }
 }
-
-export default Hamming;
