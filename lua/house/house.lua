@@ -19,9 +19,8 @@ house.verse = function(n)
   local verse = ''
   for i = 1, n do
     local noun, verb = unpack(songlines[i])
-    verse = verb .. verse
     if i == 1 then that = ' that ' else that = '\n  that ' end
-    verse = 'the ' .. noun .. that .. verse
+    verse = 'the ' .. noun .. that .. verb .. verse
   end
   return 'This is ' .. verse
 end
