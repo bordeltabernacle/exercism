@@ -2,21 +2,18 @@
 
 function Hamming() {}
 
-Hamming.prototype.compute = function (strandA, strandB) {
+Hamming.prototype.compute = function (a, b) {
 
-    if (strandA.length != strandB.length) {
-        throw new Error('DNA strands must be of equal length.');
-    }
-
-    var difference = 0;
-
-    for (var i = 0; i < strandA.length; i++) {
-        if (strandA[i] != strandB[i]) {
-            difference++;
-        };
+  if (a.length != b.length) {
+    throw new Error('DNA strands must be of equal length.');
+  }
+  var distance = 0;
+  for (var i = 0; i < a.length; i++) {
+    if (a[i] != b[i]) {
+      distance++;
     };
-
-    return difference;
+  };
+  return distance;
 }
 
 module.exports = Hamming;
