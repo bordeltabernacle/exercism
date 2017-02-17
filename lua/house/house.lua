@@ -1,35 +1,37 @@
 local songlines = {
-  ' the house that Jack built.',
-  ' the malt\nthat lay in',
-  ' the rat\nthat ate',
-  ' the cat\nthat killed',
-  ' the dog\nthat worried',
-  ' the cow with the crumpled horn\nthat tossed',
-  ' the maiden all forlorn\nthat milked',
-  ' the man all tattered and torn\nthat kissed',
-  ' the priest all shaven and shorn\nthat married',
-  ' the rooster that crowed in the morn\nthat woke',
-  ' the farmer sowing his corn\nthat kept',
-  ' the horse and the hound and the horn\nthat belonged to',
+  {'house', 'Jack built.'},
+  {'malt', 'lay in '},
+  {'rat', 'ate '},
+  {'cat', 'killed '},
+  {'dog', 'worried '},
+  {'cow with the crumpled horn', 'tossed '},
+  {'maiden all forlorn', 'milked '},
+  {'man all tattered and torn', 'kissed '},
+  {'priest all shaven and shorn', 'married '},
+  {'rooster that crowed in the morn', 'woke '},
+  {'farmer sowing his corn', 'kept '},
+  {'horse and the hound and the horn', 'belonged to '}
 }
 
 local house = {}
 
 house.verse = function(n)
-  local v = ''
+  local verse = ''
   for i = 1, n do
-    v = songlines[i] .. v
+    local noun, verb = unpack(songlines[i])
+    verse = verb .. verse
+    if i == 1 then that = ' that ' else that = '\n  that ' end
+    verse = 'the ' .. noun .. that .. verse
   end
-  return 'This is' .. v
+  return 'This is ' .. verse
 end
 
 house.recite = function()
-  local s = ''
+  local song = {}
   for i = 1, #songlines do
-    s = s .. house.verse(i)
-    if i ~= #songlines then s = s .. '\n' end
+    table.insert(song, house.verse(i))
   end
-  return s
+  return table.concat(song, '\n')
 end
 
 return house
