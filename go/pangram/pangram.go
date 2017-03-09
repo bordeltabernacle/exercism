@@ -1,20 +1,21 @@
 package pangram
 
-import "unicode"
+import "strings"
 
-const (
-	testVersion = 1
-	allChars    = 0x03ffffff
-)
+const testVersion = 1
 
-func IsPangram(s string) bool {
-	var set int32
+func IsPangram(sentence string) bool {
 
-	for _, r := range s {
-		if lr := unicode.ToLower(r); lr >= 'a' && lr <= 'z' {
-			set |= 1 << (byte(lr) - 'a')
-		}
+	if len(sentence) < 26 {
+		return false
 	}
 
-	return allChars == set
+	sentence = strings.ToLower(sentence)
+
+	for i := int('a'); i <= int('z'); i++ {
+		if !strings.Contains(sentence, string(i)) {
+			return false
+		}
+	}
+	return true
 }
