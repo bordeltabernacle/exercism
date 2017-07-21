@@ -2,4 +2,9 @@ package accumulate
 
 const testVersion = 1
 
-func Accumulate([]string, func(string) string) []string
+func Accumulate(input []string, f func(string) string) []string {
+	for k, v := range input {
+		input[k] = f(v)
+	}
+	return input
+}
