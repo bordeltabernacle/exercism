@@ -33,7 +33,7 @@ directory:
 
 For running the tests provided, `rebar3` is used as it is the official build and
 dependency management tool for erlang now. Please refer to [the tracks installation
-instructions](http://exercism.io/languages/erlang/installing) on how to do that.
+instructions](http://exercism.io/languages/erlang/installation) on how to do that.
 
 In order to run the tests, you can issue the following command from the exercise
 directory.
@@ -74,4 +74,3 @@ JavaRanch Cattle Drive, exercise 3 [http://www.javaranch.com/leap.jsp](http://ww
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
-
