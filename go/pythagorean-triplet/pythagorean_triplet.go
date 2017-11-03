@@ -19,10 +19,9 @@ func Range(min, max int) (ts []Triplet) {
 
 func Sum(p int) (ts []Triplet) {
 	triplets := Range(0, p)
-	for i := 0; i < len(triplets); i++ {
-		a, b, c := triplets[i][0], triplets[i][1], triplets[i][2]
-		if a+b+c == p {
-			ts = append(ts, Triplet{a, b, c})
+	for _, t := range triplets {
+		if t[0]+t[1]+t[2] == p {
+			ts = append(ts, t)
 		}
 	}
 	return ts
