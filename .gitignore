@@ -1,9 +1,7 @@
 ## Ignore languages
 /coffeescript/
 /cpp/
-/csharp/
 /elisp/
-/fsharp/
 /haskell/
 /java/
 /lfe/
