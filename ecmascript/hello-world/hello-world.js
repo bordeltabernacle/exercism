@@ -1,8 +1,7 @@
 class HelloWorld {
-  hello(name = 'World') {
-    return `Hello, ${name}!`;
+  hello() {
+    return "Hello, World!";
   }
 }
 
 export default HelloWorld;
-

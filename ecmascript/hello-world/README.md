@@ -1,61 +1,27 @@
 # Hello World
 
-Write a program that greets the user by name, or by saying "Hello, World!" if no name is given.
+The classical introductory exercise. Just say "Hello, World!".
 
-["Hello, World!"](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program) is the traditional first program for beginning programming in a new language.
+["Hello, World!"](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program) is
+the traditional first program for beginning programming in a new language
+or environment.
 
-**Note:** You can skip this exercise by running:
+The objectives are simple:
 
-    exercism skip $LANGUAGE hello-world
+- Write a function that returns the string "Hello, World!".
+- Run the test suite and make sure that it succeeds.
+- Submit your solution and check it at the website.
 
-## Specification
-
-The `Hello World!` program will greet me, the caller.
-
-If I tell the program my name is Alice, it will greet me by saying "Hello, Alice!".
-
-If I neglect to give it my name, it will greet me by saying "Hello, World!"
-
-## Test-Driven Development
-
-As programmers mature, they eventually want to test their code.
-
-Here at Exercism we simulate [Test-Driven Development](http://en.wikipedia.org/wiki/Test-driven_development) (TDD), where you write your tests before writing any functionality. The simulation comes in the form of a pre-written test suite, which will signal that you have solved the problem.
-
-It will also provide you with a safety net to explore other solutions without breaking the functionality.
-
-### A typical TDD workflow on Exercism:
-
-1. Run the test file and pick one test that's failing.
-2. Write some code to fix the test you picked.
-3. Re-run the tests to confirm the test is now passing.
-4. Repeat from step 1.
-5. Submit your solution (`exercism submit /path/to/file`)
-
-## Instructions
-
-Submissions are encouraged to be general, within reason. Having said that, it's also important not to over-engineer a solution.
-
-It's important to remember that the goal is to make code as expressive and readable as we can. However, solutions to the hello-world exercise will be not be reviewed by a person, but by rikki- the robot, who will offer an encouraging word.
+If everything goes well, you will be ready to fetch your first real exercise.
 
 ## Setup
 
 Go through the setup instructions for ECMAScript to
 install the necessary dependencies:
 
-http://exercism.io/languages/ecmascript
+http://exercism.io/languages/ecmascript/installation
 
 ## Requirements
-
-They are already described in the link above, but just as a
-quick reference:
-
-Install globally a tool to run [Gulp](http://gulpjs.com) if
-it is not installed yet:
-
-```bash
-$ npm install -g gulp-cli
-```
 
 Install assignment dependencies:
 
@@ -68,15 +34,18 @@ $ npm install
 Execute the tests with:
 
 ```bash
-$ gulp test
+$ npm test
 ```
 
-In many test suites all but the first test have been skipped.
+In the test suites all tests but the first have been skipped.
 
-Once you get a test passing, you can unskip the next one by
-changing `xit` to `it`.
+Once you get a test passing, you can enable the next one by
+changing `xtest` to `test`.
 
 
 ## Source
 
-This is a program to introduce users to using Exercism [view source](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program)
+This is an exercise to introduce users to using Exercism [http://en.wikipedia.org/wiki/%22Hello,_world!%22_program](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program)
+
+## Submitting Incomplete Solutions
+It's possible to submit an incomplete solution so you can see how others have completed the exercise.
