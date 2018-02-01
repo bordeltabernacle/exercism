@@ -1,10 +1,11 @@
 {
-    "plugins": ["jasmine"],
-    "extends": "eslint-config-airbnb-es5",
-    "env": {
-      "jasmine": true
-    },
-    "rules": {
-      "func-names": "off"
-    }
+  "plugins": ["jasmine"],
+  "extends": "eslint-config-airbnb-es5",
+  "env": {
+    "jasmine": true
+  },
+  "rules": {
+    "func-names": "off",
+    "class-methods-use-this": "off"
+  }
 }

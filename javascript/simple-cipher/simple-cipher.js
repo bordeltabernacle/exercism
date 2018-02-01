@@ -18,7 +18,7 @@ let Cipher = function(userKey) {
 
   this.encode = plaintext => {
     let encoded = ""
-    plaintext.split("").forEach((char, i) => {
+    Array.from(plaintext).forEach((char, i) => {
       let shift =
         alphabet.indexOf(char) + alphabet.indexOf(this.key[i % this.key.length])
       if (shift >= 26) {
@@ -31,7 +31,7 @@ let Cipher = function(userKey) {
 
   this.decode = ciphertext => {
     let decoded = ""
-    ciphertext.split("").forEach((char, i) => {
+    Array.from(ciphertext).forEach((char, i) => {
       let shift =
         alphabet.indexOf(char) - alphabet.indexOf(this.key[i % this.key.length])
       if (shift < 0) {

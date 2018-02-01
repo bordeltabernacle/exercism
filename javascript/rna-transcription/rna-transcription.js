@@ -2,14 +2,14 @@ class DnaTranscriber {
   toRna(dna) {
     return [...dna]
       .map(x => {
-        var nucleotide = { G: "C", C: "G", T: "A", A: "U" }[x];
+        var nucleotide = { G: "C", C: "G", T: "A", A: "U" }[x]
         if (nucleotide === undefined) {
-          throw Error("Invalid input");
+          throw Error("Invalid input")
         }
-        return nucleotide;
+        return nucleotide
       })
-      .join("");
+      .join("")
   }
 }
 
-module.exports = DnaTranscriber;
+module.exports = DnaTranscriber
