@@ -10,7 +10,7 @@ const randomKey = () => {
   return key
 }
 
-module.exports = function(userKey) {
+let Cipher = function(userKey) {
   this.key = userKey || randomKey()
   if (userKey === "" || !this.key.match(/^[a-z]+$/)) {
     throw Error("Bad key")
@@ -42,3 +42,5 @@ module.exports = function(userKey) {
     return decoded
   }
 }
+
+module.exports = Cipher
