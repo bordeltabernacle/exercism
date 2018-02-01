@@ -1,5 +1,5 @@
 class Transcriptor {
-  toRna(dna) {
+  static toRna(dna) {
     return [...dna]
       .map((x) => {
         const nucleotide = { G: 'C', C: 'G', T: 'A', A: 'U' }[x];
@@ -12,4 +12,4 @@ class Transcriptor {
   }
 }
 
-module.exports = Transcriptor;
+export default Transcriptor;
