@@ -1,21 +1,26 @@
 class Transcriptor {
-  translations: { [dna: string]: string } = {
-    G: "C",
-    C: "G",
-    T: "A",
-    A: "U"
-  }
-  toRna(dna: string): string {
-    return [...dna]
-      .map(x => {
-        const nucleotide: string = this.translations[x]
-        if (nucleotide === undefined) {
-          throw Error("Invalid input DNA.")
+    static translations: { [dna: string]: string } = {
+        G: "C",
+        C: "G",
+        T: "A",
+        A: "U"
+    }
+
+    transcribeNucleotide(nucleotide: string): string {
+        const complement: string = Transcriptor.translations[nucleotide]
+        if (complement === undefined) {
+            throw Error("Invalid input DNA.")
         }
-        return nucleotide
-      })
-      .join("")
-  }
+        return complement
+    }
+
+    toRna(dna: string): string {
+        return Array.from(dna)
+            .map((nucleotide: string): string => {
+                return this.transcribeNucleotide(nucleotide)
+            })
+            .join("")
+    }
 }
 
 export default Transcriptor

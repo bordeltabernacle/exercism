@@ -5,7 +5,6 @@
     "jasmine": true
   },
   "rules": {
-    "func-names": "off",
-    "class-methods-use-this": "off"
+    "func-names": "off"
   }
 }
