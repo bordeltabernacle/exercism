@@ -1,10 +1,18 @@
 class Pangram {
-    constructor( /* Parameters go here */ ) {
-        // Your code here
+    private sentence: string
+    private alphabet: string[] = Array.from("abcdefghijklmnopqrstuvwxyz")
+
+    constructor(sentence: string) {
+        this.sentence = sentence
     }
 
-    isPangram() {
-        // Your code here
+    isPangram(): boolean {
+        if (this.sentence.length < 26) {
+            return false
+        }
+        return this.alphabet.every((letter: string) =>
+            this.sentence.toLowerCase().includes(letter)
+        )
     }
 }
 
