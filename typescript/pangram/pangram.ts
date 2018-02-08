@@ -1,12 +1,11 @@
 class Pangram {
-    private text: string[]
-    constructor(text: string) {
-        this.text = Array.from(text)
+    constructor(readonly text: string) {
+        this.text = text
     }
 
     private textMap(): Map<string, boolean> {
         const m = new Map<string, boolean>()
-        this.text.forEach((key: string) => {
+        Array.from(this.text).forEach((key: string) => {
             m.set(key.toLowerCase(), true)
         })
         return m
