@@ -1,22 +1,27 @@
 class Pangram {
-    private sentence: string[]
-    private alphabet: string[] = Array.from("abcdefghijklmnopqrstuvwxyz")
+    private text: string[]
+    constructor(text: string) {
+        this.text = Array.from(text)
+    }
 
-    constructor(sentence: string) {
-        this.sentence = Array.from(sentence)
+    private textMap(): Map<string, boolean> {
+        const m = new Map<string, boolean>()
+        this.text.forEach((key: string) => {
+            m.set(key.toLowerCase(), true)
+        })
+        return m
     }
 
     isPangram(): boolean {
-        if (this.sentence.length < 26) {
+        if (this.text.length < 26) {
             return false
         }
-        const sentenceMap = new Map<string, boolean>()
-        this.sentence.forEach((key: string) => {
-            sentenceMap.set(key.toLowerCase(), true)
-        })
-        return this.alphabet.every(
-            (letter: string) => sentenceMap.get(letter) !== undefined
-        )
+        for (let letter = 97; letter < 123; letter++) {
+            if (this.textMap().get(String.fromCharCode(letter)) === undefined) {
+                return false
+            }
+        }
+        return true
     }
 }
 
