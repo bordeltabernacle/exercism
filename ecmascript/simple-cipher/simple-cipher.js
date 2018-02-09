@@ -1,39 +1,43 @@
-"use strict"
-
-const alphabet = "abcdefghijklmnopqrstuvwxyz"
-
-const randomKey = () => {
-  let key = ""
-  for (let i = 0; i < 100; i++) {
-    key += alphabet[Math.floor(Math.random() * 26)]
-  }
-  return key
-}
-
-const mod = (n, m) => (n % m + m) % m
-
-let Cipher = function(userKey) {
-  this.key = userKey || randomKey()
-  if (userKey === "" || !this.key.match(/^[a-z]+$/)) {
-    throw Error("Bad key")
+class Cipher {
+  constructor(userKey) {
+    this.alphabet = "abcdefghijklmnopqrstuvwxyz"
+    this.key = userKey || this.randomKey()
+    if (userKey === "" || !this.key.match(/^[a-z]+$/)) {
+      throw Error("Bad key")
+    }
   }
 
-  this.convert = (text, sign) => {
+  randomKey() {
+    let key = ""
+    for (let i = 0; i < 100; i++) {
+      key += this.alphabet[Math.floor(Math.random() * 26)]
+    }
+    return key
+  }
+
+  _convertedLetter(letter, index, sign) {
+    let offset =
+      this.alphabet.indexOf(letter) +
+      sign * this.alphabet.indexOf(this.key[index % this.key.length])
+    offset = offset >= 26 ? (offset -= 26) : offset
+    offset = offset < 0 ? (offset += 26) : offset
+    return this.alphabet[offset]
+  }
+
+  _convert(text, sign) {
     let converted = ""
-    Array.from(text).forEach((char, i) => {
-      const shift = sign * alphabet.indexOf(this.key[mod(i, this.key.length)])
-      converted +=
-        alphabet[mod(alphabet.indexOf(char) + shift, alphabet.length)]
+    Array.from(text).forEach((letter, index) => {
+      converted += this._convertedLetter(letter, index, sign)
     })
     return converted
   }
 
-  this.encode = (plaintext) => {
-    return this.convert(plaintext, 1)
+  encode(plaintext) {
+    return this._convert(plaintext, 1)
   }
 
-  this.decode = (ciphertext) => {
-    return this.convert(ciphertext, -1)
+  decode(ciphertext) {
+    return this._convert(ciphertext, -1)
   }
 }
 
