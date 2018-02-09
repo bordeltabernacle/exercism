@@ -8,28 +8,29 @@ class Cipher {
   }
 
   randomKey() {
-    let key = ""
-    for (let i = 0; i < 100; i++) {
-      key += this.alphabet[Math.floor(Math.random() * 26)]
-    }
-    return key
+    return Array.from(Array(100)).reduce(
+      (key) => key + this.alphabet[Math.floor(Math.random() * 26)],
+      ""
+    )
+  }
+
+  _wrap(offset) {
+    offset = offset >= 26 ? (offset -= 26) : offset
+    offset = offset < 0 ? (offset += 26) : offset
+    return offset
   }
 
   _convertedLetter(letter, index, sign) {
     let offset =
       this.alphabet.indexOf(letter) +
       sign * this.alphabet.indexOf(this.key[index % this.key.length])
-    offset = offset >= 26 ? (offset -= 26) : offset
-    offset = offset < 0 ? (offset += 26) : offset
-    return this.alphabet[offset]
+    return this.alphabet[this._wrap(offset)]
   }
 
   _convert(text, sign) {
-    let converted = ""
-    Array.from(text).forEach((letter, index) => {
-      converted += this._convertedLetter(letter, index, sign)
-    })
-    return converted
+    return Array.from(text).reduce((converted, letter, index) => {
+      return converted + this._convertedLetter(letter, index, sign)
+    }, "")
   }
 
   encode(plaintext) {
