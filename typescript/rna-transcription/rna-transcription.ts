@@ -8,7 +8,7 @@ class Transcriptor {
 
     transcribeNucleotide(nucleotide: string): string {
         const complement: string = Transcriptor.translations[nucleotide]
-        if (complement === undefined) {
+        if (!complement) {
             throw Error("Invalid input DNA.")
         }
         return complement
@@ -16,9 +16,11 @@ class Transcriptor {
 
     toRna(dna: string): string {
         return Array.from(dna)
-            .map((nucleotide: string): string => {
-                return this.transcribeNucleotide(nucleotide)
-            })
+            .map(
+                (nucleotide: string): string => {
+                    return this.transcribeNucleotide(nucleotide)
+                }
+            )
             .join("")
     }
 }
