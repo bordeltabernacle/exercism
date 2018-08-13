@@ -17,6 +17,8 @@
 /scheme/
 /swift/
 
+/.vscode/
+
 *.pyc
 *.cache/
 *.beam
