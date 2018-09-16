@@ -1,6 +1,8 @@
 class SimpleCipher {
   private alphabet: string = `abcdefghijklmnopqrstuvwxyz`
-  private key: string
+  private alphabetLength: number = this.alphabet.length
+
+  readonly key: string
 
   constructor(userKey?: string) {
     this.key = userKey || this.randomKey()
@@ -11,19 +13,29 @@ class SimpleCipher {
 
   private randomKey(): string {
     return Array.from(Array(100)).reduce(
-      (key: string) => `${key}${this.alphabet[Math.floor(Math.random() * 26)]}`,
+      (key: string) =>
+        `${key}${
+          this.alphabet[Math.floor(Math.random() * this.alphabetLength)]
+        }`,
       ""
     )
   }
 
+  private adjustOffset(offset: number): number {
+    if (offset >= this.alphabetLength) {
+      offset -= this.alphabetLength
+    }
+    if (offset < 0) {
+      offset += this.alphabetLength
+    }
+    return offset
+  }
+
   private convertChar(char: string, index: number, sign: number): string {
-    let offset: number =
+    const offset: number = this.adjustOffset(
       this.alphabet.indexOf(char) +
-      sign * this.alphabet.indexOf(this.key[index % this.key.length])
-
-    offset = offset >= 26 ? (offset -= 26) : offset
-    offset = offset < 0 ? (offset += 26) : offset
-
+        sign * this.alphabet.indexOf(this.key[index % this.key.length])
+    )
     return this.alphabet[offset]
   }
 
@@ -41,3 +53,5 @@ class SimpleCipher {
     return this.convert(ciphertext, -1)
   }
 }
+
+export default SimpleCipher
